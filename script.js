@@ -1,90 +1,94 @@
-document.addEventListener("keypress", function (e) {
-  console.log(e.key);
+var inSearchBar = false;
+var otherKey = ["q", "u", "i", "o", "f", "h", "j", "l", "z", "x", "n"];
+
+function buttonPress(event, id) {
+  event.preventDefault();
+  if (inSearchBar == false) {
+    document.querySelector("#" + id).style.backgroundColor = "#444";
+    document.querySelector("#" + id).click();
+  } else {
+    document.querySelector("#searchbar").value += event.key;
+  }
+}
+
+document.addEventListener("keydown", function (e) {
   switch (e.key) {
     case "/":
       e.preventDefault();
-      document.querySelector("#searchbar").focus();
+      if (inSearchBar == false) {
+        document.querySelector("#searchbar").focus();
+        inSearchBar = true;
+      }
       break;
     case "y":
-      e.preventDefault();
-      // var oldString = document.querySelector("#youtube").textContent;
-      // var newString =
-      //   "<span style='color:yellow'> " +
-      //   oldString.charAt(0) +
-      //   "</span>" +
-      //   "<span style='color:white'> " +
-      //   oldString.slice(1) +
-      //   "</span>";
-      // document.querySelector("#youtube").innerHTML = newString;
-      // var str = document.querySelector("#youtube").textContent;
-      // str = str.replace(
-      //   /^[a-zA-Z].*$/,
-      //   '<span style="color:yellow">Y</span>$1',
-      // );
-      document.querySelector("#youtube").style.backgroundColor = "#444";
-      document.querySelector("#youtube").click();
+      buttonPress(e, "youtube");
       break;
     case "g":
-      e.preventDefault();
-      document.querySelector("#github").click();
+      buttonPress(e, "github");
       break;
     case "s":
-      e.preventDefault();
-      document.querySelector("#spotify").click();
+      buttonPress(e, "spotify");
       break;
     case "t":
-      e.preventDefault();
-      document.querySelector("#monkeytype").click();
+      buttonPress(e, "monkeytype");
       break;
     case "r":
-      e.preventDefault();
-      document.querySelector("#reddit").click();
+      buttonPress(e, "reddit");
       break;
     case "p":
-      e.preventDefault();
-      document.querySelector("#pinterest").click();
+      buttonPress(e, "pinterest");
       break;
     case "k":
-      e.preventDefault();
-      document.querySelector("#keep").click();
+      buttonPress(e, "keep");
       break;
     case "v":
-      e.preventDefault();
-      document.querySelector("#vimm").click();
+      buttonPress(e, "vimm");
       break;
     case "a":
-      e.preventDefault();
-      document.querySelector("#openai").click();
+      buttonPress(e, "openai");
       break;
     case "c":
-      e.preventDefault();
-      document.querySelector("#chess").click();
+      buttonPress(e, "chess");
       break;
     case "d":
-      e.preventDefault();
-      document.querySelector("#roms").click();
+      buttonPress(e, "roms");
       break;
     case "b":
-      e.preventDefault();
-      document.querySelector("#raindrop").click();
+      buttonPress(e, "raindrop");
       break;
     case "m":
-      e.preventDefault();
-      document.querySelector("#mail").click();
+      buttonPress(e, "mail");
       break;
     case "w":
-      e.preventDefault();
-      document.querySelector("#whatsapp").click();
+      buttonPress(e, "whatsapp");
       break;
     case "e":
-      e.preventDefault();
-      document.querySelector("#enka").click();
+      buttonPress(e, "enka");
       break;
     case "0":
-      e.preventDefault();
-      document.querySelector("#localhost").click();
+      buttonPress(e, "localhost");
       break;
+    case "Enter":
+      e.preventDefault();
+      location.href =
+        "https://duckduckgo.com/?q=" +
+        document.querySelector("#searchbar").value;
+      break;
+
+    case "Escape":
+      e.preventDefault();
+      document.querySelector("#searchbar").blur();
+      inSearchBar = false;
+      break;
+
     default:
+      if (otherKey.includes(e.key)) {
+        e.preventDefault();
+        document.querySelector("#searchbar").value += e.key;
+        document.querySelector("#searchbar").focus();
+        inSearchBar = true;
+        break;
+      }
       break;
   }
 });
