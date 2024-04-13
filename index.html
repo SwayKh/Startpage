@@ -83,65 +83,75 @@
             document.querySelector("#" + id).style.backgroundColor = "#222";
           }, 500);
           document.querySelector("#" + id).click();
-        } else {
-          document.querySelector("#searchbar").value += event.key;
         }
+        document.querySelector("#searchbar").value += event.key;
       }
 
       document.addEventListener("keydown", function (e) {
+        console.log(e.key);
         switch (e.key) {
           case "y":
+          case "Y":
             buttonPress(e, "youtube");
             break;
           case "g":
+          case "G":
             buttonPress(e, "github");
             break;
           case "s":
+          case "S":
             buttonPress(e, "spotify");
             break;
           case "t":
+          case "T":
             buttonPress(e, "monkeytype");
             break;
           case "r":
+          case "R":
             buttonPress(e, "reddit");
             break;
           case "p":
+          case "P":
             buttonPress(e, "pinterest");
             break;
           case "k":
+          case "K":
             buttonPress(e, "keep");
             break;
           case "v":
+          case "V":
             buttonPress(e, "vimm");
             break;
           case "a":
+          case "A":
             buttonPress(e, "openai");
             break;
           case "c":
+          case "C":
             buttonPress(e, "chess");
             break;
           case "d":
+          case "D":
             buttonPress(e, "roms");
             break;
           case "b":
+          case "B":
             buttonPress(e, "raindrop");
             break;
           case "m":
+          case "M":
             buttonPress(e, "mail");
             break;
           case "w":
+          case "W":
             buttonPress(e, "whatsapp");
             break;
           case "e":
+          case "E":
             buttonPress(e, "enka");
             break;
           case "0":
             buttonPress(e, "localhost");
-            break;
-          case "Enter":
-            location.href =
-              "https://duckduckgo.com/?q=" +
-              document.querySelector("#searchbar").value;
             break;
           case "Escape":
             document.querySelector("#searchbar").blur();
@@ -153,11 +163,16 @@
               inSearchBar = true;
             }
             break;
+          case "Enter":
+            location.href =
+              "https://duckduckgo.com/?q=" +
+              document.querySelector("#searchbar").value;
+            break;
           default:
             if (otherKey.includes(e.key)) {
               document.querySelector("#searchbar").value += e.key;
-              document.querySelector("#searchbar").focus();
               inSearchBar = true;
+              document.querySelector("#searchbar").focus();
             }
             break;
         }
