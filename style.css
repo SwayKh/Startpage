@@ -19,7 +19,7 @@ body {
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  gap: 2vh;
+  gap: 5vh;
 }
 
 #searchbar {
@@ -44,7 +44,7 @@ a {
   display: flex;
   align-items: center;
   border: 0;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 12vw;
   height: 12vh;
   color: #eee;
@@ -54,4 +54,8 @@ a {
   text-decoration: none;
   overflow: hidden;
   word-break: break-all;
+}
+
+a:hover {
+  background-color: #333;
 }
