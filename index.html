@@ -5,7 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start Page</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+
+    <style>
+      body {
+        font-family: "JetBrainsMono Nerd Font", Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        background-color: #111;
+        padding: 0;
+        margin: 0;
+        height: 100dvh;
+        overflow-y: hidden;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #outer-box {
+        flex: 0;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        gap: 5vh;
+      }
+
+      #searchbar {
+        height: 3vh;
+        width: 60vw;
+        border: none;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        color: #fff;
+        background-color: #222;
+      }
+
+      #inner-box {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        gap: 1vh;
+      }
+
+      a {
+        flex: auto;
+        display: flex;
+        align-items: center;
+        border: 0;
+        border-radius: 10px;
+        width: 12vw;
+        height: 12vh;
+        color: #eee;
+        background-color: #222;
+        padding-left: 1rem;
+
+        text-decoration: none;
+        overflow: hidden;
+        word-break: break-all;
+      }
+
+      a:hover {
+        background-color: #333;
+      }
+    </style>
+
+    <script type="text/javascript" defer>
+      var inSearchBar = false;
+      var otherKey = ["q", "u", "i", "o", "f", "h", "j", "l", "z", "x", "n"];
+      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+      function buttonPress(event, id) {
+        event.preventDefault();
+        if (inSearchBar == false) {
+          document.querySelector("#" + id).style.backgroundColor = "#444";
+          setTimeout(function timer() {
+            document.querySelector("#" + id).style.backgroundColor = "#222";
+          }, 500);
+          document.querySelector("#" + id).click();
+        } else {
+          document.querySelector("#searchbar").value += event.key;
+        }
+      }
+
+      document.addEventListener("keydown", function (e) {
+        switch (e.key) {
+          case "y":
+            buttonPress(e, "youtube");
+            break;
+          case "g":
+            buttonPress(e, "github");
+            break;
+          case "s":
+            buttonPress(e, "spotify");
+            break;
+          case "t":
+            buttonPress(e, "monkeytype");
+            break;
+          case "r":
+            buttonPress(e, "reddit");
+            break;
+          case "p":
+            buttonPress(e, "pinterest");
+            break;
+          case "k":
+            buttonPress(e, "keep");
+            break;
+          case "v":
+            buttonPress(e, "vimm");
+            break;
+          case "a":
+            buttonPress(e, "openai");
+            break;
+          case "c":
+            buttonPress(e, "chess");
+            break;
+          case "d":
+            buttonPress(e, "roms");
+            break;
+          case "b":
+            buttonPress(e, "raindrop");
+            break;
+          case "m":
+            buttonPress(e, "mail");
+            break;
+          case "w":
+            buttonPress(e, "whatsapp");
+            break;
+          case "e":
+            buttonPress(e, "enka");
+            break;
+          case "0":
+            buttonPress(e, "localhost");
+            break;
+          case "Enter":
+            location.href =
+              "https://duckduckgo.com/?q=" +
+              document.querySelector("#searchbar").value;
+            break;
+          case "Escape":
+            document.querySelector("#searchbar").blur();
+            inSearchBar = false;
+            break;
+          case "/":
+            if (inSearchBar == false) {
+              document.querySelector("#searchbar").focus();
+              inSearchBar = true;
+            }
+            break;
+          default:
+            if (otherKey.includes(e.key)) {
+              document.querySelector("#searchbar").value += e.key;
+              document.querySelector("#searchbar").focus();
+              inSearchBar = true;
+            }
+            break;
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="outer-box">
