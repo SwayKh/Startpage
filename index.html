@@ -83,12 +83,12 @@
             document.querySelector("#" + id).style.backgroundColor = "#222";
           }, 500);
           document.querySelector("#" + id).click();
+        } else {
+          document.querySelector("#searchbar").value += event.key;
         }
-        document.querySelector("#searchbar").value += event.key;
       }
 
       document.addEventListener("keydown", function (e) {
-        console.log(e.key);
         switch (e.key) {
           case "y":
           case "Y":
