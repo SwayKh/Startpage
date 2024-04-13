@@ -7,22 +7,22 @@ document.addEventListener("keypress", function (e) {
       break;
     case "y":
       e.preventDefault();
-      var oldString = document.querySelector("#youtube").innerHTML;
-      var newString =
-        "<span style='color:yellow'>" +
-        oldString.charAt(0) +
-        "</span>" +
-        "<span style='color:white'>" +
-        oldString.slice(1) +
-        " " +
-        "</span>";
-      document.querySelector("#youtube").innerHTML = newString;
+      // var oldString = document.querySelector("#youtube").textContent;
+      // var newString =
+      //   "<span style='color:yellow'> " +
+      //   oldString.charAt(0) +
+      //   "</span>" +
+      //   "<span style='color:white'> " +
+      //   oldString.slice(1) +
+      //   "</span>";
+      // document.querySelector("#youtube").innerHTML = newString;
       // var str = document.querySelector("#youtube").textContent;
       // str = str.replace(
       //   /^[a-zA-Z].*$/,
       //   '<span style="color:yellow">Y</span>$1',
       // );
-      // document.querySelector("#youtube").focus();
+      document.querySelector("#youtube").style.backgroundColor = "#444";
+      document.querySelector("#youtube").click();
       break;
     case "g":
       e.preventDefault();
