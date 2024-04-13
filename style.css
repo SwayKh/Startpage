@@ -1,6 +1,5 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 40px;
   background-color: #222;
   padding: 0;
   margin: 0;
@@ -12,36 +11,38 @@ body {
   align-items: center;
 }
 
-#container {
+#outer-box {
+  flex: 0;
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  width: 50%;
-  height: 50%;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 2vh;
 }
 
-#second row {
+#searchbar {
+  height: 3vh;
+  width: 50vw;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  color: #fff;
+  background-color: #333;
+}
+
+#inner-box {
   display: flex;
   flex-wrap: wrap;
-  justify-items: space-around;
-  align-items: center;
-  /* width: 50dvw; */
-  /* height: 40dvh; */
+  margin: auto;
+  gap: 1vh;
 }
 
 button {
+  flex: auto;
   border: 0;
   border-radius: 5px;
-  font-size: 18px;
+  width: 12vw;
+  height: 12vh;
   color: #fff;
   background-color: #333;
-  padding: 10px;
-  /* margin: 10px; */
-  /* height: 80px; */
-  /* width: 120px; */
 }
