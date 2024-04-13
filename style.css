@@ -24,7 +24,7 @@ body {
 
 #searchbar {
   height: 3vh;
-  width: 50vw;
+  width: 60vw;
   border: none;
   border-radius: 1rem;
   padding: 0.5rem;
@@ -41,11 +41,7 @@ body {
 
 a {
   flex: auto;
-  text-decoration: none;
-  overflow: hidden;
-  word-break: break-all;
   display: flex;
-  justify-content: center;
   align-items: center;
   border: 0;
   border-radius: 5px;
@@ -53,4 +49,9 @@ a {
   height: 12vh;
   color: #eee;
   background-color: #222;
+  padding-left: 1rem;
+
+  text-decoration: none;
+  overflow: hidden;
+  word-break: break-all;
 }
