@@ -154,25 +154,31 @@
             buttonPress(e, "localhost");
             break;
           case "Escape":
+            e.preventDefault();
             document.querySelector("#searchbar").blur();
             inSearchBar = false;
             break;
           case "/":
             if (inSearchBar == false) {
+              e.preventDefault();
               document.querySelector("#searchbar").focus();
               inSearchBar = true;
             }
             break;
           case "Enter":
+            e.preventDefault();
             location.href =
               "https://duckduckgo.com/?q=" +
               document.querySelector("#searchbar").value;
             break;
           default:
             if (otherKey.includes(e.key)) {
-              document.querySelector("#searchbar").value += e.key;
-              inSearchBar = true;
-              document.querySelector("#searchbar").focus();
+              if (!e.ctrlKey) {
+                e.preventDefault();
+                document.querySelector("#searchbar").value += e.key;
+                inSearchBar = true;
+                document.querySelector("#searchbar").focus();
+              }
             }
             break;
         }
