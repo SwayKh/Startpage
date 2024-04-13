@@ -1,10 +1,14 @@
 var inSearchBar = false;
 var otherKey = ["q", "u", "i", "o", "f", "h", "j", "l", "z", "x", "n"];
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function buttonPress(event, id) {
   event.preventDefault();
   if (inSearchBar == false) {
     document.querySelector("#" + id).style.backgroundColor = "#444";
+    setTimeout(function timer() {
+      document.querySelector("#" + id).style.backgroundColor = "#222";
+    }, 500);
     document.querySelector("#" + id).click();
   } else {
     document.querySelector("#searchbar").value += event.key;
@@ -13,13 +17,6 @@ function buttonPress(event, id) {
 
 document.addEventListener("keydown", function (e) {
   switch (e.key) {
-    case "/":
-      e.preventDefault();
-      if (inSearchBar == false) {
-        document.querySelector("#searchbar").focus();
-        inSearchBar = true;
-      }
-      break;
     case "y":
       buttonPress(e, "youtube");
       break;
@@ -69,25 +66,25 @@ document.addEventListener("keydown", function (e) {
       buttonPress(e, "localhost");
       break;
     case "Enter":
-      e.preventDefault();
       location.href =
         "https://duckduckgo.com/?q=" +
         document.querySelector("#searchbar").value;
       break;
-
     case "Escape":
-      e.preventDefault();
       document.querySelector("#searchbar").blur();
       inSearchBar = false;
       break;
-
+    case "/":
+      if (inSearchBar == false) {
+        document.querySelector("#searchbar").focus();
+        inSearchBar = true;
+      }
+      break;
     default:
       if (otherKey.includes(e.key)) {
-        e.preventDefault();
         document.querySelector("#searchbar").value += e.key;
         document.querySelector("#searchbar").focus();
         inSearchBar = true;
-        break;
       }
       break;
   }
