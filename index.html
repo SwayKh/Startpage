@@ -4,12 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start Page</title>
-    <link rel="stylesheet" href="style.css" />
-
     <style>
       body {
         font-family: "JetBrainsMono Nerd Font", Arial, Helvetica, sans-serif;
-        font-size: 18px;
+        font-size: 8px;
         font-weight: 700;
         background-color: #111;
         padding: 0;
@@ -22,7 +20,7 @@
         align-items: center;
       }
 
-      #outer-box {
+      #outerBox {
         flex: 0;
         display: flex;
         flex-direction: column;
@@ -41,7 +39,7 @@
         background-color: #222;
       }
 
-      #inner-box {
+      #innerBox {
         display: flex;
         flex-wrap: wrap;
         margin: auto;
@@ -72,8 +70,15 @@
 
     <script type="text/javascript" defer>
       var inSearchBar = false;
-      var otherKey = ["q", "u", "i", "o", "f", "h", "j", "l", "z", "x", "n"];
-      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+      var alphabet = "abcdefghijklmnopqrstuvwxyz";
+      var links = document.getElementById("innerBox").children;
+      var usedKeys = [];
+      for (let i = 0; i < links.length; i++) {
+        usedKeys.push(String(links[i].textContent).charAt(0).toLowerCase());
+      }
+      var otherKey = alphabet.split("").filter(function (letter) {
+        return !usedKeys.includes(letter);
+      });
 
       function buttonPress(event, id) {
         event.preventDefault();
@@ -89,121 +94,64 @@
       }
 
       document.addEventListener("keydown", function (e) {
-        switch (e.key) {
-          case "y":
-          case "Y":
-            buttonPress(e, "youtube");
-            break;
-          case "g":
-          case "G":
-            buttonPress(e, "github");
-            break;
-          case "s":
-          case "S":
-            buttonPress(e, "spotify");
-            break;
-          case "t":
-          case "T":
-            buttonPress(e, "monkeytype");
-            break;
-          case "r":
-          case "R":
-            buttonPress(e, "reddit");
-            break;
-          case "p":
-          case "P":
-            buttonPress(e, "pinterest");
-            break;
-          case "k":
-          case "K":
-            buttonPress(e, "keep");
-            break;
-          case "v":
-          case "V":
-            buttonPress(e, "vimm");
-            break;
-          case "a":
-          case "A":
-            buttonPress(e, "openai");
-            break;
-          case "c":
-          case "C":
-            buttonPress(e, "chess");
-            break;
-          case "d":
-          case "D":
-            buttonPress(e, "roms");
-            break;
-          case "b":
-          case "B":
-            buttonPress(e, "raindrop");
-            break;
-          case "m":
-          case "M":
-            buttonPress(e, "mail");
-            break;
-          case "w":
-          case "W":
-            buttonPress(e, "whatsapp");
-            break;
-          case "e":
-          case "E":
-            buttonPress(e, "enka");
-            break;
-          case "0":
-            buttonPress(e, "localhost");
-            break;
-          case "Escape":
+        if (usedKeys.includes(e.key)) {
+          for (let i = 0; i < usedKeys.length; i++) {
+            if (links[i].textContent.charAt(0).toLowerCase() == e.key) {
+              buttonPress(e, links[i].id);
+            }
+          }
+        } else if (e.key == "Escape") {
+          e.preventDefault();
+          document.querySelector("#searchbar").blur();
+          inSearchBar = false;
+        } else if (e.key == "/") {
+          if (inSearchBar == false) {
             e.preventDefault();
-            document.querySelector("#searchbar").blur();
-            inSearchBar = false;
-            break;
-          case "/":
-            if (inSearchBar == false) {
+            document.querySelector("#searchbar").focus();
+            inSearchBar = true;
+          }
+        } else if (e.key == "Enter") {
+          e.preventDefault();
+          location.href =
+            "https://duckduckgo.com/?q=" +
+            document.querySelector("#searchbar").value;
+        } else {
+          if (otherKey.includes(e.key)) {
+            if (!e.ctrlKey) {
               e.preventDefault();
-              document.querySelector("#searchbar").focus();
+              document.querySelector("#searchbar").value += e.key;
               inSearchBar = true;
+              document.querySelector("#searchbar").focus();
             }
-            break;
-          case "Enter":
-            e.preventDefault();
-            location.href =
-              "https://duckduckgo.com/?q=" +
-              document.querySelector("#searchbar").value;
-            break;
-          default:
-            if (otherKey.includes(e.key)) {
-              if (!e.ctrlKey) {
-                e.preventDefault();
-                document.querySelector("#searchbar").value += e.key;
-                inSearchBar = true;
-                document.querySelector("#searchbar").focus();
-              }
-            }
-            break;
+          }
         }
       });
     </script>
   </head>
   <body>
-    <div id="outer-box">
+    <div id="outerBox">
       <input id="searchbar" type="text" placeholder="Search..." />
-      <div id="inner-box">
-        <a id="youtube" href="https://Youtube.com">Y Youtube</a>
+      <div id="innerBox">
+        <!-- Add any links here, By sure to add a id attribute, and the key you want -->
+        <!-- to use for link as the first letter of Text content -->
+        <!-- Example -->
+        <!-- <a id="SomeId" href="link.com">{Key} Bookmark Name</a> -->
+
+        <a id="openai" href="https://chat.openai.com">A ChatGPT</a>
+        <a id="raindrop" href="https://raindrop.io">B Raindrop</a>
+        <a id="CS50" href="https://cs50.harvard.edu/x/2024">C CS50</a>
+        <a id="roms" href="https://r-roms.github.io">D r/Roms</a>
+        <a id="enka" href="https://enka.network">E Enka.network</a>
         <a id="github" href="https://github.com">G Github</a>
+        <a id="keep" href="https://keep.google.com">K Keep</a>
+        <a id="mail" href="https://mail.google.com">M Gmail</a>
+        <a id="top" href="https://theodinproject.com">O Odin Project</a>
+        <a id="pinterest" href="https://in.pinterest.com">P Pinterest</a>
+        <a id="reddit" href="https://reddit.com">R Reddit</a>
         <a id="spotify" href="https://open.spotify.com">S Spotify</a>
         <a id="monkeytype" href="https://monkeytype.com">T Monkeytype</a>
-        <a id="reddit" href="https://reddit.com">R Reddit</a>
-        <a id="pinterest" href="https://in.pinterest.com">P Pinterest</a>
-        <a id="keep" href="https://keep.google.com">K Keep</a>
-        <a id="vimm" href="https://vimm.net">V Vimm's Lair</a>
-        <a id="openai" href="https://chat.openai.com">A ChatGPT</a>
-        <a id="chess" href="https://chess.com">C Chess</a>
-        <a id="roms" href="https://r-roms.github.io">D r/Roms</a>
-        <a id="raindrop" href="https://raindrop.io">B Raindrop</a>
-        <a id="mail" href="https://mail.google.com">M Gmail</a>
         <a id="whatsapp" href="https://web.whatsapp.com">W Whatsapp</a>
-        <a id="enka" href="https://enka.network">E Enka.network</a>
+        <a id="youtube" href="https://Youtube.com">Y Youtube</a>
         <a id="localhost" href="http://localhost:8000">0 localhost</a>
       </div>
     </div>
