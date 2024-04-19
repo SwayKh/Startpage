@@ -67,78 +67,18 @@
         background-color: #333;
       }
     </style>
-
-    <script type="text/javascript" defer>
-      var inSearchBar = false;
-      var alphabet = "abcdefghijklmnopqrstuvwxyz";
-      var links = document.getElementById("innerBox").children;
-      var usedKeys = [];
-      for (let i = 0; i < links.length; i++) {
-        usedKeys.push(String(links[i].textContent).charAt(0).toLowerCase());
-      }
-      var otherKey = alphabet.split("").filter(function (letter) {
-        return !usedKeys.includes(letter);
-      });
-
-      function buttonPress(event, id) {
-        event.preventDefault();
-        if (inSearchBar == false) {
-          document.querySelector("#" + id).style.backgroundColor = "#444";
-          setTimeout(function timer() {
-            document.querySelector("#" + id).style.backgroundColor = "#222";
-          }, 500);
-          document.querySelector("#" + id).click();
-        } else {
-          document.querySelector("#searchbar").value += event.key;
-        }
-      }
-
-      document.addEventListener("keydown", function (e) {
-        if (usedKeys.includes(e.key)) {
-          for (let i = 0; i < usedKeys.length; i++) {
-            if (links[i].textContent.charAt(0).toLowerCase() == e.key) {
-              buttonPress(e, links[i].id);
-            }
-          }
-        } else if (e.key == "Escape") {
-          e.preventDefault();
-          document.querySelector("#searchbar").blur();
-          inSearchBar = false;
-        } else if (e.key == "/") {
-          if (inSearchBar == false) {
-            e.preventDefault();
-            document.querySelector("#searchbar").focus();
-            inSearchBar = true;
-          }
-        } else if (e.key == "Enter") {
-          e.preventDefault();
-          location.href =
-            "https://duckduckgo.com/?q=" +
-            document.querySelector("#searchbar").value;
-        } else {
-          if (otherKey.includes(e.key)) {
-            if (!e.ctrlKey) {
-              e.preventDefault();
-              document.querySelector("#searchbar").value += e.key;
-              inSearchBar = true;
-              document.querySelector("#searchbar").focus();
-            }
-          }
-        }
-      });
-    </script>
   </head>
   <body>
     <div id="outerBox">
       <input id="searchbar" type="text" placeholder="Search..." />
       <div id="innerBox">
-        <!-- Add any links here, By sure to add a id attribute, and the key you want -->
-        <!-- to use for link as the first letter of Text content -->
+        <!-- Add any links here, Be sure to add an id attribute, and the key you want -->
+        <!-- to use for the Bookmark as the first letter of Text content -->
         <!-- Example -->
         <!-- <a id="SomeId" href="link.com">{Key} Bookmark Name</a> -->
 
         <a id="openai" href="https://chat.openai.com">A ChatGPT</a>
-        <a id="raindrop" href="https://raindrop.io">B Raindrop</a>
+        <a id="raindrop" href="https://app.raindrop.io/my/0">B Raindrop</a>
         <a id="CS50" href="https://cs50.harvard.edu/x/2024">C CS50</a>
         <a id="roms" href="https://r-roms.github.io">D r/Roms</a>
         <a id="enka" href="https://enka.network">E Enka.network</a>
@@ -156,4 +96,63 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript" defer>
+    var inSearchBar = false;
+    var alphabet = "abcdefghijklmnopqrstuvwxyz";
+    var links = document.getElementById("innerBox").children;
+    var usedKeys = [];
+    for (let i = 0; i < links.length; i++) {
+      usedKeys.push(String(links[i].textContent).charAt(0).toLowerCase());
+    }
+    var otherKey = alphabet.split("").filter(function (letter) {
+      return !usedKeys.includes(letter);
+    });
+
+    function buttonPress(event, id) {
+      event.preventDefault();
+      if (inSearchBar == false) {
+        document.querySelector("#" + id).style.backgroundColor = "#444";
+        setTimeout(function timer() {
+          document.querySelector("#" + id).style.backgroundColor = "#222";
+        }, 500);
+        document.querySelector("#" + id).click();
+      } else {
+        document.querySelector("#searchbar").value += event.key;
+      }
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (usedKeys.includes(e.key)) {
+        for (let i = 0; i < usedKeys.length; i++) {
+          if (links[i].textContent.charAt(0).toLowerCase() == e.key) {
+            buttonPress(e, links[i].id);
+          }
+        }
+      } else if (e.key == "Escape") {
+        e.preventDefault();
+        document.querySelector("#searchbar").blur();
+        inSearchBar = false;
+      } else if (e.key == "/") {
+        if (inSearchBar == false) {
+          e.preventDefault();
+          document.querySelector("#searchbar").focus();
+          inSearchBar = true;
+        }
+      } else if (e.key == "Enter") {
+        e.preventDefault();
+        location.href =
+          "https://duckduckgo.com/?q=" +
+          document.querySelector("#searchbar").value;
+      } else {
+        if (otherKey.includes(e.key)) {
+          if (!e.ctrlKey) {
+            e.preventDefault();
+            document.querySelector("#searchbar").value += e.key;
+            inSearchBar = true;
+            document.querySelector("#searchbar").focus();
+          }
+        }
+      }
+    });
+  </script>
 </html>
