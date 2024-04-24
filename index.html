@@ -24,9 +24,24 @@
         flex: 0;
         display: flex;
         flex-direction: column;
-        justify-items: center;
+        justify-content: center;
         align-items: center;
         gap: 5vh;
+      }
+
+      #timebanner {
+        flex: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 60vw;
+      }
+
+      #time,
+      #date {
+        font-size: 4rem;
+        font-weight: 700;
+        color: #fff;
       }
 
       #searchbar {
@@ -53,7 +68,7 @@
         border: 0;
         border-radius: 10px;
         width: 12vw;
-        height: 12vh;
+        height: 10vh;
         color: #eee;
         background-color: #222;
         padding-left: 1rem;
@@ -70,6 +85,10 @@
   </head>
   <body>
     <div id="outerBox">
+      <div id="timebanner">
+        <div id="date"></div>
+        <div id="time"></div>
+      </div>
       <input id="searchbar" type="text" placeholder="Search..." />
       <div id="innerBox">
         <!-- Add any links here, Be sure to add an id attribute, and the key you want -->
@@ -82,20 +101,25 @@
         <a id="CS50" href="https://cs50.harvard.edu/x/2024">C CS50</a>
         <a id="roms" href="https://r-roms.github.io">D r/Roms</a>
         <a id="enka" href="https://enka.network">E Enka.network</a>
+        <a id="nerd" href="https://www.nerdfonts.com/cheat-sheet">F Fonts</a>
         <a id="github" href="https://github.com">G Github</a>
+        <a id="chess" href="https://chess.com">H Chess</a>
         <a id="keep" href="https://keep.google.com">K Keep</a>
         <a id="mail" href="https://mail.google.com">M Gmail</a>
+        <a id="notes" href="https://ticktick.com/webapp">N Ticktick</a>
         <a id="top" href="https://theodinproject.com">O Odin Project</a>
         <a id="pinterest" href="https://in.pinterest.com">P Pinterest</a>
         <a id="reddit" href="https://reddit.com">R Reddit</a>
         <a id="spotify" href="https://open.spotify.com">S Spotify</a>
         <a id="monkeytype" href="https://monkeytype.com">T Monkeytype</a>
+        <a id="vimm" href="https://vimm.net/">V Vimm's Lair</a>
         <a id="whatsapp" href="https://web.whatsapp.com">W Whatsapp</a>
         <a id="youtube" href="https://Youtube.com">Y Youtube</a>
         <a id="localhost" href="http://localhost:8000">0 localhost</a>
       </div>
     </div>
   </body>
+
   <script type="text/javascript" defer>
     var inSearchBar = false;
     var alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -154,5 +178,52 @@
         }
       }
     });
+
+    window.onload = timeup();
+    function timeup() {
+      var time = new Date();
+      var hour = time.getHours();
+      var min = time.getMinutes();
+      var ampm = "AM";
+      if (hour > 12) {
+        hour -= 12;
+        ampm = "PM";
+      }
+      if (hour == 0) {
+        hour = 12;
+      }
+      if (hour < 10) {
+        hour = "0" + hour;
+      }
+      if (min < 10) {
+        min = "0" + min;
+      }
+      var currentTime = hour + ":" + min + " " + ampm;
+      document.getElementById("time").innerHTML = currentTime;
+      setTimeout(timeup, 15000);
+    }
+
+    window.onload = dateup();
+    function dateup() {
+      const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      var date = new Date();
+      var day = date.getDate();
+      var mm = monthNames[date.getMonth()];
+      var currentDate = day + " " + mm;
+      document.getElementById("date").innerHTML = currentDate;
+    }
   </script>
 </html>
