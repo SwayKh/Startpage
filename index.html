@@ -29,21 +29,6 @@
         gap: 5vh;
       }
 
-      #timebanner {
-        flex: auto;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 60vw;
-      }
-
-      #time,
-      #date {
-        font-size: 4rem;
-        font-weight: 700;
-        color: #fff;
-      }
-
       #searchbar {
         height: 3vh;
         width: 60vw;
@@ -57,7 +42,7 @@
       #innerBox {
         display: flex;
         flex-wrap: wrap;
-        margin: auto;
+        width: 60vw;
         gap: 1vh;
       }
 
@@ -81,14 +66,29 @@
       a:hover {
         background-color: #333;
       }
+
+      #timebanner {
+        flex: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 60vw;
+      }
+
+      #time,
+      #date {
+        font-size: 4rem;
+        font-weight: 700;
+        color: #fff;
+      }
     </style>
   </head>
   <body>
     <div id="outerBox">
-      <div id="timebanner">
-        <div id="date"></div>
-        <div id="time"></div>
-      </div>
+      <!-- <div id="timebanner"> -->
+      <!--   <div id="date"></div> -->
+      <!--   <div id="time"></div> -->
+      <!-- </div> -->
       <input id="searchbar" type="text" placeholder="Search..." />
       <div id="innerBox">
         <!-- Add any links here, Be sure to add an id attribute, and the key you want -->
@@ -179,51 +179,51 @@
       }
     });
 
-    window.onload = timeup();
-    function timeup() {
-      var time = new Date();
-      var hour = time.getHours();
-      var min = time.getMinutes();
-      var ampm = "AM";
-      if (hour > 12) {
-        hour -= 12;
-        ampm = "PM";
-      }
-      if (hour == 0) {
-        hour = 12;
-      }
-      if (hour < 10) {
-        hour = "0" + hour;
-      }
-      if (min < 10) {
-        min = "0" + min;
-      }
-      var currentTime = hour + ":" + min + " " + ampm;
-      document.getElementById("time").innerHTML = currentTime;
-      setTimeout(timeup, 15000);
-    }
-
-    window.onload = dateup();
-    function dateup() {
-      const monthNames = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-      var date = new Date();
-      var day = date.getDate();
-      var mm = monthNames[date.getMonth()];
-      var currentDate = day + " " + mm;
-      document.getElementById("date").innerHTML = currentDate;
-    }
+    // window.onload = timeup();
+    // function timeup() {
+    //   var time = new Date();
+    //   var hour = time.getHours();
+    //   var min = time.getMinutes();
+    //   var ampm = "AM";
+    //   if (hour > 12) {
+    //     hour -= 12;
+    //     ampm = "PM";
+    //   }
+    //   if (hour == 0) {
+    //     hour = 12;
+    //   }
+    //   if (hour < 10) {
+    //     hour = "0" + hour;
+    //   }
+    //   if (min < 10) {
+    //     min = "0" + min;
+    //   }
+    //   var currentTime = hour + ":" + min + " " + ampm;
+    //   document.getElementById("time").innerHTML = currentTime;
+    //   setTimeout(timeup, 15000);
+    // }
+    //
+    // window.onload = dateup();
+    // function dateup() {
+    //   const monthNames = [
+    //     "Jan",
+    //     "Feb",
+    //     "Mar",
+    //     "Apr",
+    //     "May",
+    //     "Jun",
+    //     "Jul",
+    //     "Aug",
+    //     "Sep",
+    //     "Oct",
+    //     "Nov",
+    //     "Dec",
+    //   ];
+    //   var date = new Date();
+    //   var day = date.getDate();
+    //   var mm = monthNames[date.getMonth()];
+    //   var currentDate = day + " " + mm;
+    //   document.getElementById("date").innerHTML = currentDate;
+    // }
   </script>
 </html>
