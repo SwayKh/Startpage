@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start Page</title>
     <style>
+      :root {
+        /*Update colors here*/
+        --fg: #6c5e9b; /* For bookmark button */
+        --bg: #271638; /* for page background */
+        --white: #eeeeee; /* for text color */
+        --highlight: #958fc1; /* for button hover color */
+      }
       body {
         font-family: "JetBrainsMono Nerd Font", Arial, Helvetica, sans-serif;
         font-size: 16px;
         font-weight: 700;
-        background-color: #111;
+        background-color: var(--bg);
         padding: 0;
         margin: 0;
         height: 100dvh;
@@ -35,8 +42,8 @@
         border: none;
         border-radius: 1rem;
         padding: 0.5rem;
-        color: #fff;
-        background-color: #222;
+        color: var(--white);
+        background-color: var(--fg);
       }
 
       #innerBox {
@@ -54,8 +61,8 @@
         border-radius: 10px;
         width: 12vw;
         height: 10vh;
-        color: #eee;
-        background-color: #222;
+        color: var(--white);
+        background-color: var(--fg);
         padding-left: 1rem;
 
         text-decoration: none;
@@ -64,7 +71,7 @@
       }
 
       a:hover {
-        background-color: #333;
+        background-color: var(--highlight);
       }
     </style>
   </head>
@@ -76,31 +83,22 @@
         <!-- to use for the Bookmark as the first letter of Text content -->
         <!-- Example -->
         <!-- <a id="SomeId" href="link.com">{Key} Bookmark Name</a> -->
-
+        <!-- -->
         <a id="openai" href="https://chat.openai.com">A ChatGPT</a>
-        <!-- <a id="raindrop" href="https://app.raindrop.io/my/0">B Raindrop</a> -->
         <a id="CS50" href="https://cs50.harvard.edu/x/2024">C CS50</a>
-        <!-- <a id="enka" href="https://enka.network">E Enka.network</a> -->
-        <!-- <a id="nerd" href="https://www.nerdfonts.com/cheat-sheet">F Fonts</a> -->
-        <!-- <a id="github" href="https://github.com">G Github</a> -->
+        <a id="github" href="https://github.com">G Github</a>
         <a id="chess" href="https://chess.com">H Chess</a>
         <a id="keep" href="https://keep.google.com">K Keep</a>
         <a id="mail" href="https://mail.google.com">M Gmail</a>
-        <!-- <a id="notes" href="https://ticktick.com/webapp">N Ticktick</a> -->
         <a id="top" href="https://theodinproject.com">O Odin Project</a>
         <a id="pinterest" href="https://in.pinterest.com">P Pinterest</a>
-         <a id="roms" href="https://r-roms.github.io">R Roms</a> 
-        <!-- <a id="reddit" href="https://reddit.com">R Reddit</a> -->
+        <a id="roms" href="https://r-roms.github.io">R Roms</a>
         <a id="spotify" href="https://open.spotify.com">S Spotify</a>
         <a id="monkeytype" href="https://monkeytype.com">T Monkeytype</a>
-        <!--<a id="vimm" href="https://vimm.net/">V Vimm's Lair</a>-->
-        <a id="whatsapp" href="https://web.whatsapp.com">W Whatsapp</a>
         <a id="youtube" href="https://Youtube.com">Y Youtube</a>
-        <!-- <a id="localhost" href="http://localhost:8000">0 localhost</a> -->
       </div>
     </div>
   </body>
-
   <script type="text/javascript" defer>
     var inSearchBar = false;
     var alphabet = "abcdefghijklmnopqrstuvwxyz";
