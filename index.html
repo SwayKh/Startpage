@@ -125,12 +125,15 @@
       return !usedKeys.includes(letter);
     });
 
+    var style = getComputedStyle(document.body);
     function buttonPress(event, id) {
       event.preventDefault();
       if (inSearchBar == false) {
-        document.querySelector("#" + id).style.backgroundColor = "#444";
+        document.querySelector("#" + id).style.backgroundColor =
+          style.getPropertyValue("--fg");
         setTimeout(function timer() {
-          document.querySelector("#" + id).style.backgroundColor = "#222";
+          document.querySelector("#" + id).style.backgroundColor =
+            style.getPropertyValue("--highlight");
         }, 500);
         document.querySelector("#" + id).click();
       } else {
